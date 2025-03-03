@@ -1,0 +1,26 @@
+.categoryContainer {
+    margin: 0.5em;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background-color: #f9f9f9;
+    /* width: auto; */
+}
+
+.categoryTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.small {
+    height: 350px;
+}
+
+.medium {
+    height: 500px;
+}
+
+.large {
+    height: 400px;
+}

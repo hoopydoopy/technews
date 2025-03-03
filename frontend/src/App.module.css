@@ -1,0 +1,18 @@
+.container {
+    display: flex; /* Enables horizontal layout */
+    height: 100vh; /* Full height of the viewport */
+    /* float: right; */
+    width: 100vw;
+}
+
+.sidebar {
+    width: 5vw; /* Adjust as needed */
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: #3157a1; /* Light gray background */
+}
+
+.content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 16px; /* Adds spacing */
+}
+
