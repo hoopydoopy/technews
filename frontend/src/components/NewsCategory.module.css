@@ -22,5 +22,6 @@
 }
 
 .large {
-    height: 400px;
+    grid-row: span 2;
+    height: 890px;
 }
