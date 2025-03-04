@@ -20,7 +20,11 @@ services:
       context: ./backend
     ports:
       - "5000:5000"
+    env_file:
+      - ./backend/.env
     volumes:
       - ./backend:/usr/src/app
     working_dir: /usr/src/app
     command: node server.js
+
+    
