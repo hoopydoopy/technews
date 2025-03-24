@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import styles from './NewsCategory.module.css'
+import styles from "./NewsCategory.module.css";
+import { Article } from "../types/types";
 
 interface NewsCategoryProps {
-    label: string
-    size?: 'small' | 'medium' | 'large'
-    article?: {title: string; content:string}
+  label?: string;
+  size?: "small" | "medium" | "large";
+  article?: Article;
 }
 
-
-const NewsCategory = ({ label, size = "medium" }: NewsCategoryProps) => {
-    const [articles, setArticles] = useState([]);
-
-    useEffect(() => {
-        fetch("http://localhost:5000/api/news")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Fetched articles:", data);
-                setArticles(data.response?.results || []); // Adjust based on actual response structure
-            })
-            .catch((error) => console.error("Error fetching news:", error));
-    }, []);
-
-    return (
-        <div className={`${styles.categoryContainer} ${styles[size]}`}>
-            <h2 className={styles.categoryTitle}>{label}</h2>
-            <div>
-                {articles.length > 0 ? (
-                    <p>News articles received!</p>
-                ) : (
-                    <p>No news available</p>
-                )}
-            </div>
-        </div>
-    );
+const NewsCategory = ({ size = "medium", article }: NewsCategoryProps) => {
+  return (
+    <div className={`${styles.categoryContainer} ${styles[size]}`}>
+      {article ? (
+        <a
+          href={article.webUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.articleLink}
+        >
+          <div className={styles.articleCard}>
+            {article.fields?.thumbnail && (
+              <img
+                src={article.fields.thumbnail}
+                alt={article.webTitle}
+                className={styles.articleImage}
+              />
+            )}
+            <h3 className={styles.articleTitle}>{article.webTitle}</h3>
+          </div>
+        </a>
+      ) : (
+        <p>No news available</p>
+      )}
+    </div>
+  );
 };
 
-export default NewsCategory
+export default NewsCategory;

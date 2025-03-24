@@ -1,25 +1,81 @@
+import { FiChevronLeft, FiMenu } from "react-icons/fi";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // Import navigation hooks
 import styles from "./Sidebar.module.css";
 
-const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(true);
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+  onCategorySelect: (category: string) => void;
+}
 
-    return (
-        <div className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
-            <button className={styles.toggleButton} onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? "➖" : "➕"}
-            </button>
-            {isOpen && (
-                <ul>
-                    <li>Programming</li>
-                    <li>AI</li>
-                    <li>Tech Reviews</li>
-                    <li>Cybersecurity</li>
-                    <li>Startups</li>
-                </ul>
-            )}
-        </div>
-    );
+const categories = [
+  "Programming",
+  "OpenAI",
+  "Tech Reviews",
+  "Cybersecurity",
+  "Startups",
+];
+
+const Sidebar: React.FC<SidebarProps> = ({
+  isOpen,
+  setIsOpen,
+  onCategorySelect,
+}) => {
+  const navigate = useNavigate();
+  const location = useLocation(); // Get current URL
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(category);
+    onCategorySelect(category);
+    navigate(`/news?category=${category}`);
+  };
+
+  const handleHomeClick = () => {
+    setActiveCategory(null);
+    navigate("/");
+  };
+
+  return (
+    <div
+      className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}
+    >
+      <button
+        className={styles.toggleButton}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <FiChevronLeft size={20} /> : <FiMenu size={20} />}
+      </button>
+
+      {isOpen && (
+        <ul>
+          {/* Home Button */}
+          <li
+            onClick={handleHomeClick}
+            className={`${styles.categoryItem} ${
+              location.pathname === "/" ? styles.active : ""
+            }`}
+          >
+            Home
+          </li>
+
+          {/* Categories */}
+          {categories.map((category) => (
+            <li
+              key={category}
+              onClick={() => handleCategoryClick(category)}
+              className={`${styles.categoryItem} ${
+                activeCategory === category ? styles.active : ""
+              }`}
+            >
+              {category}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default Sidebar;
