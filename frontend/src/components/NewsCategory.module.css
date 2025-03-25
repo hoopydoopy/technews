@@ -7,6 +7,7 @@
 
 h3 {
   font-family: "Source Code Pro", sans-serif;
+  font-size: 100%;
   font-weight: 100;
   padding-top: 2%;
   color: white;
@@ -14,11 +15,14 @@ h3 {
 
 .categoryContainer {
   margin: 0.5em;
+
   border-radius: 16px;
-  background-color: #111;
+  /* border-bottom: 0.1px solid rgba(255, 255, 255, 0.281); */
+  background-color: #1b1b1b;
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.493); */
 }
 
 .categoryContainer:hover {
@@ -36,7 +40,7 @@ h3 {
   background: linear-gradient(
     120deg,
     transparent 40%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(219, 217, 209, 0.3) 50%,
     transparent 70%
   );
   transform: skewX(-20deg);
@@ -61,7 +65,7 @@ h3 {
 }
 
 .large {
-  grid-row: span 2;
+  grid-column: span 1;
   height: 100%;
 }
 

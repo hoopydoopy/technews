@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get("/api/news", async (req, res) => {
   try {
-    const query = req.query.q || "OpenAI"; // Default if no category is provided
+    const query = req.query.q || "OpenAI";
 
     const response = await axios.get(
       "https://content.guardianapis.com/search",

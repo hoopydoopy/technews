@@ -33,7 +33,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ isOpen }) => {
       {articles.map((article, index) => (
         <NewsCategory
           key={article.id || index}
-          size={index === 0 ? "medium" : "small"}
+          size={index === 0 ? "large" : "small"}
           article={article}
         />
       ))}

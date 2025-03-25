@@ -10,11 +10,20 @@ interface SidebarProps {
 }
 
 const categories = [
-  "Programming",
-  "OpenAI",
-  "Tech Reviews",
-  "Cybersecurity",
-  "Startups",
+  {
+    id: "AI",
+    subcategories: ["AI", "ChatGPT", "Copilot", "Deepseek", "OpenAI"],
+  },
+  { id: "Big Tech", subcategories: ["Apple", "Google", "Microsoft", "Tesla"] },
+  {
+    id: "Gadgets",
+    subcategories: ["AMD", "Android", "Apple", "Nvidia", "Qualcomm"],
+  },
+  {
+    id: "Programming",
+    subcategories: ["C++", "Javascript", "Kotlin", "Python"],
+  },
+  { id: "Video Games", subcategories: ["PC", "Playstation", "Xbox"] },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -25,6 +34,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   const navigate = useNavigate();
   const location = useLocation(); // Get current URL
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeSubCategory, setActiveSubCategory] = useState<string | null>(
+    null
+  );
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -32,6 +44,10 @@ const Sidebar: React.FC<SidebarProps> = ({
     navigate(`/news?category=${category}`);
   };
 
+  const handleSubCategoryClick = (subcategory: string, category: string) => {
+    setActiveSubCategory(subcategory);
+    navigate(`/news?category=${category}?subcategory=${subcategory}`);
+  };
   const handleHomeClick = () => {
     setActiveCategory(null);
     navigate("/");
@@ -54,7 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <li
             onClick={handleHomeClick}
             className={`${styles.categoryItem} ${
-              location.pathname === "/" ? styles.active : ""
+              location.pathname === "/" ? styles.active : styles.inactive
             }`}
           >
             Home
@@ -62,15 +78,34 @@ const Sidebar: React.FC<SidebarProps> = ({
 
           {/* Categories */}
           {categories.map((category) => (
-            <li
-              key={category}
-              onClick={() => handleCategoryClick(category)}
-              className={`${styles.categoryItem} ${
-                activeCategory === category ? styles.active : ""
-              }`}
-            >
-              {category}
-            </li>
+            <div key={category.id}>
+              <li
+                onClick={() => handleCategoryClick(category.id)}
+                className={`${styles.categoryItem} ${
+                  activeCategory === category.id
+                    ? styles.active
+                    : styles.inactive
+                }`}
+              >
+                {category.id}
+                <span className={styles.arrow}></span>
+              </li>
+              {category.subcategories.map((subcategory) => (
+                <li
+                  onClick={() =>
+                    handleSubCategoryClick(subcategory, category.id)
+                  }
+                  className={`${styles.subCategoryItem} ${
+                    activeCategory === category.id
+                      ? styles.subActive
+                      : styles.subInactive
+                  }`}
+                >
+                  {"/ "}
+                  {subcategory}
+                </li>
+              ))}
+            </div>
           ))}
         </ul>
       )}

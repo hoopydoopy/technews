@@ -18,7 +18,7 @@ function App() {
           onCategorySelect={setCategory}
         />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isOpen={isOpen} />} />
           <Route
             path="/news"
             element={<NewsGrid isOpen={isOpen} category={category} />}
