@@ -104,7 +104,9 @@ const Sidebar: React.FC<SidebarProps> = ({
                       : styles.subInactive
                   }`}
                 >
-                  {"/ "}
+                  <span className={styles.subarrow}>{">"}</span>
+                  <span className={styles.subslash}>{"/ "}</span>
+
                   {subcategory}
                 </li>
               ))}

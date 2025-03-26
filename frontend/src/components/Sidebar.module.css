@@ -39,7 +39,7 @@ li {
   opacity: 1;
 }
 
-.active {
+.active .rightArrow {
   opacity: 1;
 }
 .sidebar {
@@ -99,6 +99,20 @@ li {
   margin-right: 44px;
 }
 
+.subarrow {
+  display: none;
+}
+
+.subCategoryItem:hover .subarrow {
+  display: inline;
+}
+
+.subInactive .subslash {
+  opacity: 1;
+}
+.subActive .subslash {
+  opacity: 0;
+}
 /* .home {
   font-size: 0.9em;
   font-family: "Source Code Pro", sans-serif;
