@@ -15,10 +15,13 @@ const categories = [
     subcategories: ["AI", "ChatGPT", "Copilot", "Deepseek", "OpenAI"],
   },
   { id: "Big Tech", subcategories: ["Apple", "Google", "Microsoft", "Tesla"] },
+  { id: "Crypto", subcategories: ["Altcoins", "Bitcoin", "NFTs"] },
+  { id: "Cybersecurity", subcategories: ["Cyber Warfare", "Data Breaches", "Hacking", "Encryption", "Ransomware"] },
   {
     id: "Gadgets",
     subcategories: ["AMD", "Android", "Apple", "Nvidia", "Qualcomm", "Samsung"],
-  },
+  }, 
+  { id: "IoT", subcategories: ["Robotics","Smart home", "Wearable Tech"] },
   {
     id: "Programming",
     subcategories: ["C++", "Javascript", "Kotlin", "Python"],
@@ -104,8 +107,8 @@ const Sidebar: React.FC<SidebarProps> = ({
                       : styles.subInactive
                   }`}
                 >
-                  <span className={styles.subarrow}>{">"}</span>
-                  <span className={styles.subslash}>{"/ "}</span>
+                  <span className={styles.subarrow}>{"> "}</span>
+                  {/* <span className={styles.subslash}>{"/ "}</span> */}
 
                   {subcategory}
                 </li>
