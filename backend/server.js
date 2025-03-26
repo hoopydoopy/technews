@@ -21,7 +21,7 @@ app.get("/api/news", async (req, res) => {
           tag: "technology/technology",
           "api-key": process.env.GUARDIAN_API_KEY,
           "show-fields": "headline,thumbnail",
-          "page-size": 10,
+          "page-size": 20,
         },
       }
     );

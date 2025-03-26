@@ -22,7 +22,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ isOpen }) => {
         setArticles(data.response?.results || []);
       })
       .catch((error) => console.error("Error fetching news:", error));
-  }, [category]); // Refetch news when category changes
+  }, [category]);
 
   return (
     <div
@@ -33,7 +33,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ isOpen }) => {
       {articles.map((article, index) => (
         <NewsCategory
           key={article.id || index}
-          size={index === 0 ? "large" : "small"}
+          size={index % 7 === 0 ? "medium" : "small"} //: index % 10 === 0 ? "small"
           article={article}
         />
       ))}

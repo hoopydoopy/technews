@@ -1,4 +1,4 @@
-import { FiChevronLeft, FiMenu } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiMenu } from "react-icons/fi";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Import navigation hooks
 import styles from "./Sidebar.module.css";
@@ -17,13 +17,14 @@ const categories = [
   { id: "Big Tech", subcategories: ["Apple", "Google", "Microsoft", "Tesla"] },
   {
     id: "Gadgets",
-    subcategories: ["AMD", "Android", "Apple", "Nvidia", "Qualcomm"],
+    subcategories: ["AMD", "Android", "Apple", "Nvidia", "Qualcomm", "Samsung"],
   },
   {
     id: "Programming",
     subcategories: ["C++", "Javascript", "Kotlin", "Python"],
   },
   { id: "Video Games", subcategories: ["PC", "Playstation", "Xbox"] },
+  { id: "Social Media", subcategories: ["Facebook", "Instagram", "Tiktok"] },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -61,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         className={styles.toggleButton}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <FiChevronLeft size={20} /> : <FiMenu size={20} />}
+        {isOpen ? <FiChevronLeft size={25} /> : <FiMenu size={20} />}
       </button>
 
       {isOpen && (
@@ -73,7 +74,8 @@ const Sidebar: React.FC<SidebarProps> = ({
               location.pathname === "/" ? styles.active : styles.inactive
             }`}
           >
-            Home
+            <FiChevronRight className={styles.rightArrow} size={20} />
+            <p className={styles.listItem}>Home</p>
           </li>
 
           {/* Categories */}
@@ -87,7 +89,8 @@ const Sidebar: React.FC<SidebarProps> = ({
                     : styles.inactive
                 }`}
               >
-                {category.id}
+                <FiChevronRight className={styles.rightArrow} size={20} />
+                <p className={styles.listItem}>{category.id}</p>
                 <span className={styles.arrow}></span>
               </li>
               {category.subcategories.map((subcategory) => (
