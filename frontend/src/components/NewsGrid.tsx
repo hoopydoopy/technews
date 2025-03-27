@@ -8,6 +8,13 @@ interface NewsGridProps {
   isOpen: boolean;
 }
 
+function getIndex(i: number) {
+  {
+    if (i % 7 === 0) {
+      return true;
+    }
+  }
+}
 const NewsGrid: React.FC<NewsGridProps> = ({ isOpen }) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const location = useLocation(); // Get current URL
@@ -33,7 +40,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ isOpen }) => {
       {articles.map((article, index) => (
         <NewsCategory
           key={article.id || index}
-          size={index % 7 === 0 ? "medium" : "small"} //: index % 10 === 0 ? "small"
+          size={getIndex(index) ? "medium" : "small"} //: index % 10 === 0 ? "small"
           article={article}
         />
       ))}

@@ -1,0 +1,6 @@
+.stocksContainer {
+  display: block;
+  border: 1px solid white;
+  overflow: scroll;
+  max-height: 80vh;
+}

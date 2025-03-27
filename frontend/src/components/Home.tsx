@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css";
+import Stocks from "./Stocks";
 interface HomeProps {
   isOpen: boolean;
 }
@@ -13,6 +14,7 @@ const Home: React.FC<HomeProps> = ({ isOpen }) => {
       <div className={styles.titleContainer}>
         <h1>Digital Dispatch </h1>
       </div>
+      <Stocks />
     </div>
   );
 };

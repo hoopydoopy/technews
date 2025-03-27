@@ -17,7 +17,7 @@ li {
   vertical-align: middle;
   justify-content: center;
   list-style-type: none;
-  font-size: 0.9em;
+  font-size: 0.9vw;
   font-family: "Source Code Pro", sans-serif;
   font-weight: 300;
   /* padding-top: 5px; */
@@ -72,7 +72,7 @@ li {
   padding-left: 20px;
   margin: 0;
   /* padding-top: 10px; */
-  font-size: 0.8em;
+  font-size: 0.7vw;
   max-height: 0; /* Start collapsed */
   overflow: hidden; /* Hide overflowing content */
   transition: max-height 0.4s ease-in-out;
@@ -115,6 +115,14 @@ li {
 }
 .subActive .subslash {
   opacity: 0;
+}
+
+.activeSubCategory .subarrow {
+  display: inline;
+}
+
+.activeSubCategory {
+  padding-left: 5px;
 }
 /* .home {
   font-size: 0.9em;
